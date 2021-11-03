@@ -71,7 +71,7 @@ public class GridHelper : MonoBehaviour
         return true;
     }
     //borrar todas las filas
-    public static DeleteAllFullRows()
+    public static void DeleteAllFullRows()
     {
         for(int y = 0; y < Height;y++)
         {

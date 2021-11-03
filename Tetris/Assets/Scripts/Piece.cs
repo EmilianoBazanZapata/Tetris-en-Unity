@@ -25,4 +25,27 @@ public class Piece : MonoBehaviour
         }
         return true;
     }
+
+    //refrescar la estructura de datos
+    private void UpdateGrid()
+    {
+        for (int y = 0; y < GridHelper.Height; y++)
+        {
+            for (int x = 0; x < GridHelper.Width; x++)
+            {
+                //el padre del bloque es el propio del script 
+                if (GridHelper.Grid[x, y] != null && GridHelper.Grid[x, y].parent == this.transform)
+                {
+                    GridHelper.Grid[x, y] = null;
+                }
+            }
+        }
+        foreach (Transform block in this.transform)
+        {
+            Vector2 pos = GridHelpher.RoundVector(block.position);
+            GridHelper.Grid[(int)pos.x, (int)pos.y] =
+            block;
+        }
+
+    }
 }

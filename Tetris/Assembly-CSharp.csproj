@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GridHelper.cs" />
+     <Compile Include="Assets\Scripts\Piece.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/Emiliano/Desktop/Unity/Unity-2D/Tetris/Tetris-en-Unity/Tetris/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
