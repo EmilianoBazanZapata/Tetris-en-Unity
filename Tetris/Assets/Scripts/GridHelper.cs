@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridHelper : MonoBehaviour
 {
-    public static int Width = 10, Height = 20;
+    public static int Width = 10, Height = 20 + 4;
     public static Transform[,] Grid = new Transform[Width, Height];
 
     //redondear las posiciones
@@ -53,7 +53,7 @@ public class GridHelper : MonoBehaviour
 
     public static void DecreaseRowsAbove(int y)
     {
-        for (int i = 0; i < Height; i++)
+        for (int i = y; i < Height; i++)
         {
             DecreaseRow(i);
         }
@@ -63,7 +63,7 @@ public class GridHelper : MonoBehaviour
     {
         for (int x = 0; x < Width; x++)
         {
-            if(Grid[x,y] == null)
+            if (Grid[x, y] == null)
             {
                 return false;
             }
@@ -73,13 +73,25 @@ public class GridHelper : MonoBehaviour
     //borrar todas las filas
     public static void DeleteAllFullRows()
     {
-        for(int y = 0; y < Height;y++)
+        for (int y = 0; y < Height; y++)
         {
-            if(IsRowFull(y))
+            if (IsRowFull(y))
             {
                 DeleteRow(y);
-                DecreaseRowsAbove(y+1);
+                DecreaseRowsAbove(y + 1);
                 y--;
+            }
+        }
+        CleanPieces();
+    }
+    //si una pieza ya no tiene hijos sera eliminada completamente del escenario
+    private static void CleanPieces()
+    {
+        foreach (GameObject piece in GameObject.FindGameObjectsWithTag("Piece"))
+        {
+            if (piece.transform.childCount == 0)
+            {
+                Destroy(piece);
             }
         }
     }
