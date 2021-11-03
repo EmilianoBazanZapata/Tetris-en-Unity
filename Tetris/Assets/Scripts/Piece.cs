@@ -4,6 +4,35 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
+    private void Update()
+    {
+        //movimiento a la izquierda
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            MovePieceHorizontal(-1);
+        }
+        //movimiento a la derecha
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            MovePieceHorizontal(1);
+        }
+    }
+    private void MovePieceHorizontal(int direction)
+    {
+        //muevo la pieza a la izquierda o  a la drecehca , dependiendo del parametro que me llegue
+        this.transform.position += new Vector3(direction, 0, 0);
+        //compruebo que la posicion sea valida
+        if (IsValidPiecePosition())
+        {
+            //actualizo la parilla y guardo la nueva posicion
+            UpdateGrid();
+        }
+        else
+        {
+            //si la posicion no es validad , revierto el movimiento 
+            this.transform.position += new Vector3(-direction, 0, 0);
+        }
+    }
     private bool IsValidPiecePosition()
     {
         foreach (Transform block in this.transform)
@@ -42,7 +71,7 @@ public class Piece : MonoBehaviour
         }
         foreach (Transform block in this.transform)
         {
-            Vector2 pos = GridHelpher.RoundVector(block.position);
+            Vector2 pos = GridHelper.RoundVector(block.position);
             GridHelper.Grid[(int)pos.x, (int)pos.y] =
             block;
         }
