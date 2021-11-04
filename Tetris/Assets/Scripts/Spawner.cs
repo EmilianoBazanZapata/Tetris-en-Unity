@@ -5,12 +5,15 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject[] LevelPices;
-    public GameObject CurrentPiece, NextPieceTetris , NextPiece;
+    public GameObject CurrentPiece, NextPieceTetris, NextPiece;
     public static Vector3 NextPosition;
     private void Start()
     {
-        NextPieceTetris = Instantiate(LevelPices[0], this.transform.position , Quaternion.identity);
-        SpawnNextPiece();
+        if (GameManager.SharedInstance.InGame == true)
+        {
+            NextPieceTetris = Instantiate(LevelPices[0], this.transform.position, Quaternion.identity);
+            SpawnNextPiece();
+        }
     }
     public void SpawnNextPiece()
     {
@@ -29,7 +32,7 @@ public class Spawner : MonoBehaviour
     public void ViewNextPiece()
     {
         Destroy(NextPiece);
-        var pos = new Vector3(6.4f,26.5f,0.0f);
+        var pos = new Vector3(6.4f, 26.5f, 0.0f);
         NextPiece = Instantiate(NextPieceTetris, pos, Quaternion.identity);
         NextPiece.GetComponent<Piece>().enabled = false;
         NextPiece.SetActive(true);

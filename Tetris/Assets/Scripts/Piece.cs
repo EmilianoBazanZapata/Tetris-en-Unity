@@ -5,67 +5,65 @@ using UnityEngine;
 public class Piece : MonoBehaviour
 {
     private float LastFall = 0.0f;
-    private void Start()
-    {
-        /*if (!IsValidPiecePosition())
-        {
-            Debug.Log("Game Over");
-            Destroy(this.gameObject);
-        }*/
-    }
     private void Update()
     {
-        //movimiento a la izquierda
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (GameManager.SharedInstance.InGame == true)
         {
-            MovePieceHorizontal(-1);
-        }
-        else
-        //movimiento a la derecha
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            MovePieceHorizontal(1);
-        }
-        else
-        //rotar la pieza
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            RotatePiece(90);
-        }
-        else
-        //mover la ficha hacia abajo
-        if (Input.GetKey(KeyCode.DownArrow) || (Time.time - LastFall) > 1.0f)
-        {
-            this.transform.position += new Vector3(0, -1, 0);
-            if (IsValidPiecePosition())
+            //movimiento a la izquierda
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                //actualizo la parilla y guardo la nueva posicion
-                UpdateGrid();
+                MovePieceHorizontal(-1);
+            }
+            else
+            //movimiento a la derecha
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                MovePieceHorizontal(1);
+            }
+            else
+            //rotar la pieza
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                RotatePiece(90);
+            }
+            else
+            //mover la ficha hacia abajo
+            if (Input.GetKey(KeyCode.DownArrow) || (Time.time - LastFall) > 1.0f)
+            {
+                DescendPiece(1, 19);
+            }
+        }
+    }
+    public void DescendPiece(int pos, int maxH)
+    {
+        this.transform.position += new Vector3(0, -pos, 0);
+        if (IsValidPiecePosition())
+        {
+            //actualizo la parilla y guardo la nueva posicion
+            UpdateGrid();
+        }
+        else
+        {
+            FindObjectOfType<Spawner>().ActivatePiece();
+            this.transform.position += new Vector3(0, pos, 0);
+            //como la pieza no puede bajar mas , a lo mejor se puede eliminar alguna fila 
+            GridHelper.DeleteAllFullRows();
+            //hacemos que aparezca una nueva ficha
+            FindObjectOfType<Spawner>().SpawnNextPiece();
+            //deshabilitar el script para que ya no se mueva la pieza
+            this.enabled = false;
+            if (this.transform.position.y > maxH)
+            {
+                GameManager.SharedInstance.FinishGame();
             }
             else
             {
                 FindObjectOfType<Spawner>().ActivatePiece();
-                this.transform.position += new Vector3(0, 1, 0);
-                //como la pieza no puede bajar mas , a lo mejor se puede eliminar alguna fila 
-                GridHelper.DeleteAllFullRows();
-                //hacemos que aparezca una nueva ficha
-                FindObjectOfType<Spawner>().SpawnNextPiece();
-                //deshabilitar el script para que ya no se mueva la pieza
-                this.enabled = false;
-                if (this.transform.position.y > 19)
-                {
-                    Debug.Log("perdiste");
-                }
-                else
-                {
-                    FindObjectOfType<Spawner>().ActivatePiece();
-                }
-
             }
-            //cada un segundo la pieza deciende
-            LastFall = Time.time;
-        }
 
+        }
+        //cada un segundo la pieza deciende
+        LastFall = Time.time;
     }
     private void RotatePiece(int direction)
     {
