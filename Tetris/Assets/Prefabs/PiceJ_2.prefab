@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5510578596781996361}
   - component: {fileID: 5510578596781996360}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block (2)
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5510578597337408380}
   - component: {fileID: 114500981055515524}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PiceJ_2
   m_TagString: Piece
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5510578597647025172}
   - component: {fileID: 5510578597647025171}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5510578597663475983}
   - component: {fileID: 5510578597663475982}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block (3)
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5510578598521925430}
   - component: {fileID: 5510578598521925429}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block (1)
   m_TagString: Block
   m_Icon: {fileID: 0}

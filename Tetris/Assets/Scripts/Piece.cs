@@ -7,11 +7,11 @@ public class Piece : MonoBehaviour
     private float LastFall = 0.0f;
     private void Start()
     {
-        if (!IsValidPiecePosition())
+        /*if (!IsValidPiecePosition())
         {
             Debug.Log("Game Over");
             Destroy(this.gameObject);
-        }
+        }*/
     }
     private void Update()
     {
@@ -44,13 +44,23 @@ public class Piece : MonoBehaviour
             }
             else
             {
+                FindObjectOfType<Spawner>().ActivatePiece();
                 this.transform.position += new Vector3(0, 1, 0);
                 //como la pieza no puede bajar mas , a lo mejor se puede eliminar alguna fila 
                 GridHelper.DeleteAllFullRows();
                 //hacemos que aparezca una nueva ficha
-                FindObjectOfType<Spawner>().SpawnNetPiece();
+                FindObjectOfType<Spawner>().SpawnNextPiece();
                 //deshabilitar el script para que ya no se mueva la pieza
                 this.enabled = false;
+                if (this.transform.position.y > 19)
+                {
+                    Debug.Log("perdiste");
+                }
+                else
+                {
+                    FindObjectOfType<Spawner>().ActivatePiece();
+                }
+
             }
             //cada un segundo la pieza deciende
             LastFall = Time.time;

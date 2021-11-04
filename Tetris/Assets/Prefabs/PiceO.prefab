@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2353338152157403427}
   - component: {fileID: 2353338152157403420}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2353338152650713688}
   - component: {fileID: 2353338152650713689}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block (2)
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2353338152951606247}
   - component: {fileID: 114111330673020880}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PiceO
   m_TagString: Piece
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2353338153057646759}
   - component: {fileID: 2353338153057646752}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block (1)
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2353338153063916374}
   - component: {fileID: 2353338153063916375}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: block (3)
   m_TagString: Block
   m_Icon: {fileID: 0}
