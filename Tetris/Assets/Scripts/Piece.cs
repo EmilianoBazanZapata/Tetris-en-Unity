@@ -5,6 +5,12 @@ using UnityEngine;
 public class Piece : MonoBehaviour
 {
     private float LastFall = 0.0f;
+
+    public static Piece SharedInstance;
+    private void Awake()
+    {
+        SharedInstance = this;
+    }
     private void Update()
     {
         if (GameManager.SharedInstance.InGame == true)
@@ -78,7 +84,7 @@ public class Piece : MonoBehaviour
             this.transform.Rotate(0, 0, direction);
         }
     }
-    private void MovePieceHorizontal(int direction)
+    public void MovePieceHorizontal(int direction)
     {
         //muevo la pieza a la izquierda o  a la drecehca , dependiendo del parametro que me llegue
         this.transform.position += new Vector3(direction, 0, 0);
